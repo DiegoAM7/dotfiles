@@ -1,0 +1,441 @@
+format = """
+[┌──────────────────────────────────────────────────](bold blue)
+[└>](bold blue) |$username\
+$hostname\
+$shlvl\
+$kubernetes\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$hg_branch\
+$docker_context\
+$package\
+$cmake\
+$dart\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$golang\
+$helm\
+$java\
+$julia\
+$kotlin\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$ruby\
+$rust\
+$swift\
+$terraform\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$env_var\
+$crystal\
+$custom\
+$cmd_duration\
+$lua\
+$jobs\
+$battery\
+$time\
+$status\
+$line_break\
+$character
+"""
+
+add_newline = true
+scan_timeout = 10
+
+[package]
+disabled = true
+
+[username]
+disabled = false
+format = " User: [$user]($style) |"
+style_user = "green bold"
+style_root = "red bold"
+show_always = false
+
+[hostname]
+disabled = false
+format =  " Host: [$hostname]($style) |"
+style = "blue bold"
+ssh_only = true
+trim_at = "."
+
+[shlvl]         #Deshabilitado
+disabled = true
+format = " [$symbol$shlvl]($style) |"
+symbol = "↕️ "
+style = "bold yellow"
+threshold = 2
+repeat = false
+
+[kubernetes]            #Deshabilitado
+disabled= true
+format = ' [$symbol$context( \($namespace\))]($style) in |'
+symbol = "☸ "
+style = "cyan bold"
+context_aliases = ""
+
+[directory]
+disabled = false
+format = " [$path]($style)[$read_only]($read_only_style) |"
+style = "bold cyan"
+truncation_length = 5
+truncate_to_repo = true
+read_only = "  "
+read_only_style = "red"
+truncation_symbol = ".../"
+home_symbol = "ﴤ "
+
+[git_branch]
+disabled = false
+format = " rama[$symbol$branch]($style) |"
+symbol = "  "
+style = "bold green"
+always_show_remote = false
+truncation_length = "2^63 - 1"
+truncation_symbol = "..."
+only_attached = false
+
+[git_commit]
+disabled = false
+format = " [\\($hash\\)]($style) [\\($tag\\)]($style) |"
+style = "bold green"
+commit_hash_length = 7
+only_detached = true
+tag_disabled = true
+tag_symbol = "  "
+
+[git_state]
+disabled = false
+format = ' \([$state( $progress_current/$progress_total)]($style)\) |'
+style = "bold yellow"
+rebase = "REBASING"
+merge = "MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
+
+[git_status]
+disabled = false
+format = ' (Estado [\[$all_status$ahead_behind\]]($style) |)'
+style = "bold yellow"
+conflicted = "="
+ahead = "⇡"
+behind = "⇣"
+diverged = "⇕"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[hg_branch]         #Deshabilitado
+disabled = true
+format = " [$symbol$branch]($style) |"
+symbol = "  "
+style = "bold purple"
+truncation_lenght = "2^63 - 1"
+truncation_symbol = "..."
+
+[docker_context]            #Deshabilitado
+disabled = true
+format = " [$symbol$context]($style) |"
+symbol = "  "
+style = "blue bold"
+only_with_files = true
+
+[cmake]         #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 喝 "
+style = "bold blue"
+
+[dart]          #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 🎯 "
+style = "bold blue"
+
+[dotnet]
+disabled = false
+format = " [$symbol($version) ($tfm )]($style) |"
+symbol = "  "
+style = "bold blue"
+heuristic = true
+
+[elixir]            #Deshabilitado
+disabled = true
+format = " [$symbol($version OTP $otp_version )]($style) |"
+symbol = " 💧 "
+style = "bold purple"
+
+[elm]           #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 🌳 "
+style = "cyan bold"
+
+[erlang]            #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = "  "
+style = "bold red"
+
+[golang]            #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 🐹 "
+style = "bold cyan"
+
+[helm]          #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " ⎈ "
+style = "bold white"
+
+[java]
+disabled = false
+format = " [${symbol}(${version})]($style) |"
+symbol = "  "
+style = "red bold"
+
+[julia]         #Deshabilitado
+disabled = true
+format = " [$symbol($version)]($style) |"
+symbol = " ஃ "
+style = "bold purple"
+
+[kotlin]
+disabled = false
+format = " [$symbol($version)]($style) |"
+symbol = " 🅺 "
+style = "bold green"
+kotlin_binary = "kotlin"
+
+[nim]           #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 👑 "
+style = "bold yellow"
+
+[nodejs]
+disabled = false
+format = " [$symbol($version)]($style) |"
+symbol = "  "
+style = "bold green"
+not_capable_style = "bold red"
+
+[ocaml]         #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 🐫 "
+style = "bold yellow"
+
+[perl]          #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 🐪 "
+style = "bold 149"
+
+[php]
+disabled = false
+format = " [$symbol($version)]($style) |"
+symbol = "  "
+style = "147 bold"
+
+[purescript]            #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " <=> "
+style = "bold white"
+
+[python]
+disabled= false
+format = ' [${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style) |'
+symbol = "  " 
+style = "yellow bold"
+pyenv_version_name = false
+pyenv_prefix = "pyenv"
+python_binary = ["python", "python3", "python2"]
+detect_files = [".python-version", "Pipfile", "__init__.py", "pyproject.toml", "requirements.txt", "setup.py", "tox.ini"]
+detect_folders = []
+detect_extensions = ["py"]
+
+[ruby]          #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 💎 "
+style = "bold red"
+
+[rust]          #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 🦀 "
+style = "bold red"
+
+[swift]
+disabled = false
+format = " [$symbol($version)]($style) |"
+symbol = " ﯣ "
+style = "bold 202"
+
+[terraform]         #Deshabilitado
+disabled = true
+format = " [$symbol$workspace]($style) |"
+symbol = " 💠 "
+style = "bold 105"
+
+[vagrant]           #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = "⍱ "
+style = "cyan bold"
+
+[zig]           #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " ↯ "
+style = "bold yellow"
+
+[nix_shell]         #Deshabilitado
+disabled = true
+format = ' [$symbol$state( \($name\))]($style) |'
+symbol = " ❄️ "
+style = "bold blue"
+impure_msg = "impure"
+pure_msg = "pure"
+
+[conda]
+disabled = false
+format = " [$symbol$environment]($style)  |"
+symbol = " 🅒 "
+style = "bold green"
+truncation_lenght = 1
+ignore_base = true
+
+[memory_usage]          #Deshabilitado
+disabled = true
+format = " $symbol[${ram}( | ${swap})]($style) |"
+symbol = ""
+style = "bold yellow"
+threshold = 10
+
+[aws]           #Deshabilitado
+disabled = true
+format = ' [$symbol$profile(\($region\))]($style) |'
+symbol = " ☁️ "
+style = "bold yellow"
+region_aliases = []
+
+[gcloud]            #Deshabilitado
+disabled = true
+format = ' [$symbol$account(\($region\))]($style) |'
+symbol = " ☁️ "
+style = "bold blue"
+region_aliases = []
+
+[openstack]         #Deshabilitado
+disabled = true
+format = " [$symbol$cloud(\\($project\\))]($style) |"
+symbol = " ☁️ "
+style = "bold yellow"
+
+[env_var]           #Deshabilitado
+disabled = true
+
+[crystal]           #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 🔮 "
+style = "bold red"
+
+[custom]            #Deshabilitado
+disabled = true
+
+[cmd_duration]
+disabled = false
+format = " demoró [$duration]($style) |"
+style = "bold yellow"
+min_time = 2_000
+show_milliseconds = false
+show_notifications = false
+min_time_to_notify = 45_000
+
+[line_break]
+disabled = false
+
+[lua]           #Deshabilitado
+disabled = true
+format = " [$symbol($version )]($style) |"
+symbol = " 🌙 "
+style = "bold blue"
+lua_binary = "lua"
+
+[jobs]          #Deshabilitado
+disabled = true
+format = " [$symbol$number]($style) |"
+symbol = " ✦ "
+style = "bold blue"
+threshold = 1
+
+[battery]
+disabled = false
+format = " [$symbol$percentage]($style) |"
+full_symbol = "  "
+charging_symbol = "  "
+unknown_symbol = "  "
+empty_symbol = "  "
+
+[[battery.display]]
+threshold = 15
+style = "bold red"
+
+[[battery.display]]
+threshold = 50
+style = "bold yellow"
+
+[time]          #Deshabilitado
+disabled = true
+format = " [Hora: $time]($style) |"
+style = "bold yellow"
+use_12hr = false
+time_format = "%T"
+utc_time_offset = "local"
+time_range = "-"
+
+[status]
+disabled = false
+format = " [$symbol$status]($style) |"
+symbol = " ✖ "
+style = "bold red"
+not_executable_symbol = " 🚫 "
+not_found_symbol = " 🔍 "
+sigint_symbol = " 🧱 "
+signal_symbol = " ⚡ "
+recognize_signal_code = true
+map_symbol = true
+
+[character]
+disabled = false
+format = " $symbol "
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+vicmd_symbol = "[❮](bold green)"
